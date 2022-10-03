@@ -1,0 +1,132 @@
+QUESTION 2:
+------------
+
+
+package org.test;
+import java.util.*;
+class RegularMemeber {
+    int membershipFee=0;
+    int enrollmentFee=0;
+    int monthCharge=20000;
+    int mon;
+    
+    public RegularMemeber(int mon) {
+        super();
+        this.mon=mon;
+    }
+
+   public void showBills() {
+       
+        System.out.println("Regular member bill: ");
+        System.out.println("Membership Fee : "+this.membershipFee);
+        System.out.println("Enrollment Fee : "+this.enrollmentFee);
+        System.out.println("Charges Per Month : Rs 20,000");
+        int charges = this.mon*this.monthCharge+this.membershipFee+this.enrollmentFee;
+        System.out.println("Total amount : "+charges);
+    }
+    }
+
+class GoldMemeber extends RegularMemeber{
+    
+    int membershipFee=90000;
+    int enrollmentFee=10000;
+    int monthCharge=10000;
+    
+    public GoldMemeber(int mon) {
+        super(mon);
+    }
+    
+    @Override
+    public void showBills() {
+        
+        System.out.println("Gold member bill : ");
+        System.out.println("Membership Fee : "+this.membershipFee);
+        System.out.println("Enrollment Fee : "+this.enrollmentFee);
+        System.out.println("Charges for 6 Month : Free");
+        System.out.println("after 6 months charges per month : 10000");
+        System.out.println();
+       
+        if(mon<=6) {
+        int charges = this.membershipFee+this.enrollmentFee;
+        System.out.println("Total amount : "+charges);
+        }
+        
+        if(mon>6)
+        {    
+            int charges= this.membershipFee+this.enrollmentFee+((this.mon-6)*this.monthCharge);
+            System.out.println("Total amount : "+charges);
+        }
+    }
+    
+}
+
+class SilverMemeber extends RegularMemeber{
+    int membershipfee=15000;
+    int enrollmentFee=5000;
+    int monthCharge=20000;
+
+   public SilverMemeber(int mon) {
+        super(mon);
+        // TODO Auto-generated constructor stub
+    }
+    
+    @Override
+    public void showBills() {
+        
+        System.out.println("Silver member bill : ");
+        System.out.println("Membership Fee : "+this.membershipFee);
+        System.out.println("Enrollment Fee : "+this.enrollmentFee);
+        System.out.println("Charges for 6 Month : Free");
+        System.out.println("after 6 months charges per month : 20000");
+        System.out.println();
+       
+        
+        if(mon<=6) {
+            int charges=+this.membershipFee+this.enrollmentFee;
+            System.out.println("Total amount : "+charges);
+        }
+        
+        
+        if(mon>6)
+        {
+            int charges=this.membershipFee+this.enrollmentFee+((this.mon-6)*this.monthCharge);
+            System.out.println("Total amount : "+charges);
+        }
+    }
+}
+
+public class MemberShip {
+	public static void main(String[] args) {
+	        System.out.println("Enroll your self");
+	        Scanner sc = new Scanner(System.in);
+	        
+	        System.out.println("enter the membership you want regular/gold/silver : ");
+	        String memebership_type=sc.nextLine();
+	        System.out.println("enter the number of months you want to enroll yourself : ");
+	        int months=sc.nextInt();
+	        
+	        RegularMemeber rm;
+	        
+	        switch (memebership_type) {
+	        
+	        case "regular":
+	            rm= new RegularMemeber(months);
+	            rm.showBills();
+	            break;
+	        
+	        case "gold":
+	            rm = new GoldMemeber(months);
+	            rm.showBills();
+	            break;
+	            
+	        case "silver":
+	            rm = new SilverMemeber(months);
+	            rm.showBills();
+	            break;
+	            
+	        	default:
+	            System.out.println("choose one out of regular/gold/silver");
+	            break;
+	        }
+	         }
+}
